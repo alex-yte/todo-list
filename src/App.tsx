@@ -6,18 +6,18 @@ function App() {
     { id: 1, title: "CSS", isDone: true },
     { id: 2, title: "HTML", isDone: true },
     { id: 3, title: "React", isDone: false },
+    { id: 4, title: "Redux", isDone: false },
   ];
-  let tasks2 = [
-    { id: 1, title: "Terminal", isDone: false },
-    { id: 2, title: "Resident", isDone: true },
-    { id: 3, title: "Jango", isDone: true },
-  ];
+  // let tasks2 = [
+  //   { id: 1, title: "Terminal", isDone: false },
+  //   { id: 2, title: "Resident", isDone: true },
+  //   { id: 3, title: "Jango", isDone: true },
+  // ];
 
   return (
     <div>
       <div className="App">
         <Todolist title="What to learn" tasks={tasks1} />
-        <Todolist title="Movies" tasks={tasks2} />
       </div>
     </div>
   );
