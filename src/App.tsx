@@ -14,10 +14,22 @@ function App() {
   //   { id: 3, title: "Jango", isDone: true },
   // ];
 
+  function removeTask(id: number) {
+    let resultTasks = tasks1.filter((t) => {
+      if (t.id !== id) return true;
+      else return false;
+    });
+    console.log(resultTasks);
+  }
+
   return (
     <div>
       <div className="App">
-        <Todolist title="What to learn" tasks={tasks1} />
+        <Todolist
+          title="What to learn"
+          tasks={tasks1}
+          removeTasks={removeTask}
+        />
       </div>
     </div>
   );

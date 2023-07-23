@@ -7,6 +7,7 @@ type TaskType = {
 type PropsType = {
   title: string;
   tasks: Array<TaskType>;
+  removeTasks: (id: number) => void;
 };
 
 function Todolist(props: PropsType) {
@@ -25,7 +26,7 @@ function Todolist(props: PropsType) {
               <span>{t.title}</span>
               <button
                 onClick={() => {
-                  alert(t.id);
+                  props.removeTasks(t.id);
                 }}
               >
                 x
