@@ -32,7 +32,7 @@ function Todolist(props: PropsType) {
                   props.removeTasks(t.id);
                 }}
               >
-                x
+                X
               </button>
             </li>
           );
