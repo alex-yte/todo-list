@@ -1,7 +1,7 @@
 import { FilterValuesType } from "./App";
 
 export type TaskType = {
-  id: number;
+  id: string;
   title: string;
   isDone: boolean;
 };
@@ -9,7 +9,7 @@ export type TaskType = {
 type PropsType = {
   title: string;
   tasks: Array<TaskType>;
-  removeTasks: (id: number) => void;
+  removeTasks: (id: string) => void;
   changeFilter: (value: FilterValuesType) => void;
 };
 
