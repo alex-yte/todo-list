@@ -12,7 +12,7 @@ type PropsType = {
   tasks: Array<TaskType>;
   removeTasks: (id: string) => void;
   changeFilter: (value: FilterValuesType) => void;
-  addTask: () => void;
+  addTask: (title: string) => void;
 };
 
 function Todolist(props: PropsType) {
@@ -25,13 +25,20 @@ function Todolist(props: PropsType) {
         <input
           type="text"
           value={newTaskTitle}
-          onChange={() => {
-            setNewTaskTitle;
+          onChange={(e) => {
+            setNewTaskTitle(e.currentTarget.value);
+          }}
+          onKeyPress={(e) => {
+            if (e.ctrlKey && e.charCode === 13) {
+              props.addTask(newTaskTitle);
+              setNewTaskTitle("");
+            }
           }}
         />
         <button
           onClick={() => {
-            props.addTask();
+            props.addTask(newTaskTitle);
+            setNewTaskTitle("");
           }}
         >
           +
