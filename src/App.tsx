@@ -23,6 +23,14 @@ function App() {
     setTasks(filteredTasks);
   }
 
+  function changeStasus(taskId: string, isDone: boolean) {
+    let task = tasks.find((t) => t.id === taskId);
+    if (task) {
+      task.isDone = isDone;
+    }
+    setTasks(tasks);
+  }
+
   function addTask(title: string) {
     let newTask = { id: v1(), title: title, isDone: false };
     let newTasks = [newTask, ...tasks];
