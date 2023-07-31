@@ -13,6 +13,7 @@ type PropsType = {
   removeTasks: (id: string) => void;
   changeFilter: (value: FilterValuesType) => void;
   addTask: (title: string) => void;
+  changeTaskStatus: (taskId: string, isDone: boolean) => void;
 };
 
 function Todolist(props: PropsType) {
@@ -22,12 +23,18 @@ function Todolist(props: PropsType) {
     setNewTaskTitle(e.currentTarget.value);
   };
   const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.ctrlKey && e.charCode === 13) {
+    if (e.charCode === 13) {
+      if (newTaskTitle.trim() === "") {
+        return;
+      }
       props.addTask(newTaskTitle);
       setNewTaskTitle("");
     }
   };
   const addTask = () => {
+    if (newTaskTitle.trim() === "") {
+      return;
+    }
     props.addTask(newTaskTitle);
     setNewTaskTitle("");
   };
@@ -52,8 +59,8 @@ function Todolist(props: PropsType) {
           const onRemoveHandler = () => {
             props.removeTasks(t.id);
           };
-          const onChangeHandlerCheck = () => {
-            console.log(t.id + "want to change");
+          const onChangeHandlerCheck = (e: ChangeEvent<HTMLInputElement>) => {
+            props.changeTaskStatus(t.id, e.currentTarget.checked);
           };
 
           return (

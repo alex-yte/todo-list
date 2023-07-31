@@ -28,7 +28,8 @@ function App() {
     if (task) {
       task.isDone = isDone;
     }
-    setTasks(tasks);
+    let copy = [...tasks];
+    setTasks(copy);
   }
 
   function addTask(title: string) {
@@ -58,6 +59,7 @@ function App() {
           removeTasks={removeTask}
           changeFilter={changeFilter}
           addTask={addTask}
+          changeTaskStatus={changeStasus}
         />
       </div>
     </div>
