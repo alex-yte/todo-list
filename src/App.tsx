@@ -25,8 +25,6 @@ function App() {
     { id: v1(), title: "Yarn", isDone: false },
   ]);
 
-  // let [filter, setFilter] = useState<FilterValuesType>("all");
-
   function removeTask(id: string) {
     let filteredTasks = tasks.filter((t) => {
       return t.id !== id;
@@ -52,7 +50,7 @@ function App() {
   function changeFilter(value: FilterValuesType, todolistId: string) {
     // setFilter(value);
   }
-  //
+
   let [todoList, setToodoList] = useState<Array<TodoListType>>([
     { id: v1(), title: "what to learn", filter: "active" },
     { id: v1(), title: "what to buy", filter: "completed" },
