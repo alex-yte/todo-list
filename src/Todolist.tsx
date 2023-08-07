@@ -11,10 +11,14 @@ type PropsType = {
   id: string;
   title: string;
   tasks: Array<TaskType>;
-  removeTasks: (id: string) => void;
+  removeTasks: (id: string, todolistId: string) => void;
   changeFilter: (value: FilterValuesType, todolistId: string) => void;
-  addTask: (title: string) => void;
-  changeTaskStatus: (taskId: string, isDone: boolean) => void;
+  addTask: (title: string, todolistId: string) => void;
+  changeTaskStatus: (
+    taskId: string,
+    isDone: boolean,
+    todolistId: string
+  ) => void;
   filter: FilterValuesType;
 };
 
@@ -29,7 +33,7 @@ function Todolist(props: PropsType) {
     setError(null);
     if (e.charCode === 13) {
       if (newTaskTitle.trim() !== "") {
-        props.addTask(newTaskTitle);
+        props.addTask(newTaskTitle, props.id);
         setNewTaskTitle("");
       } else {
         setError("Title is required");
@@ -41,7 +45,7 @@ function Todolist(props: PropsType) {
       setError("Title is required");
       return;
     }
-    props.addTask(newTaskTitle.trim());
+    props.addTask(newTaskTitle.trim(), props.id);
     setNewTaskTitle("");
   };
   const onAllClickHandler = () => props.changeFilter("all", props.id);
@@ -66,10 +70,10 @@ function Todolist(props: PropsType) {
       <ul className="list">
         {props.tasks.map((t) => {
           const onRemoveHandler = () => {
-            props.removeTasks(t.id);
+            props.removeTasks(t.id, props.id);
           };
           const onChangeHandlerCheck = (e: ChangeEvent<HTMLInputElement>) => {
-            props.changeTaskStatus(t.id, e.currentTarget.checked);
+            props.changeTaskStatus(t.id, e.currentTarget.checked, props.id);
           };
 
           return (
