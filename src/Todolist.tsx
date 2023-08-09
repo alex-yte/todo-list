@@ -1,5 +1,5 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
-import { FilterValuesType, TodoListType } from "./App";
+import { FilterValuesType } from "./App";
 
 export type TaskType = {
   id: string;
@@ -23,7 +23,7 @@ type PropsType = {
   removeTodolist: (TodolistId: string) => void;
 };
 
-function Todolist(props: PropsType) {
+export function Todolist(props: PropsType) {
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [error, setError] = useState<null | string>(null);
 
@@ -117,5 +117,3 @@ function Todolist(props: PropsType) {
     </div>
   );
 }
-
-export default Todolist;
