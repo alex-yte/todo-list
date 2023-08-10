@@ -1,5 +1,6 @@
-import { ChangeEvent, KeyboardEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { FilterValuesType } from "./App";
+import { AddItemForm } from "./AddItemForm";
 
 export type TaskType = {
   id: string;
@@ -24,31 +25,6 @@ type PropsType = {
 };
 
 export function Todolist(props: PropsType) {
-  const [newTaskTitle, setNewTaskTitle] = useState("");
-  const [error, setError] = useState<null | string>(null);
-
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewTaskTitle(e.currentTarget.value);
-  };
-  const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    setError(null);
-    if (e.charCode === 13) {
-      if (newTaskTitle.trim() !== "") {
-        props.addTask(newTaskTitle, props.id);
-        setNewTaskTitle("");
-      } else {
-        setError("Title is required");
-      }
-    }
-  };
-  const addTask = () => {
-    if (newTaskTitle.trim() === "") {
-      setError("Title is required");
-      return;
-    }
-    props.addTask(newTaskTitle.trim(), props.id);
-    setNewTaskTitle("");
-  };
   const onAllClickHandler = () => props.changeFilter("all", props.id);
   const onActiveClickHandler = () => props.changeFilter("active", props.id);
   const onCompletedClickHandler = () =>
@@ -56,22 +32,16 @@ export function Todolist(props: PropsType) {
   const removeTodolist = () => {
     props.removeTodolist(props.id);
   };
+  const addTask = (title: string) => {
+    debugger;
+    props.addTask(title, props.id);
+  };
   return (
     <div>
       <h3>
         {props.title} <button onClick={removeTodolist}>x</button>
       </h3>
-      <div>
-        <input
-          type="text"
-          value={newTaskTitle}
-          onChange={onChangeHandler}
-          onKeyPress={onKeyPressHandler}
-          className={error ? "error" : ""}
-        />
-        <button onClick={addTask}>+</button>
-        {error && <div className="error-message">{error}</div>}
-      </div>
+      <AddItemForm addItem={addTask} />
       <ul className="list">
         {props.tasks.map((t) => {
           const onRemoveHandler = () => {

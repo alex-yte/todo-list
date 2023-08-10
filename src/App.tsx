@@ -83,10 +83,14 @@ function App() {
     delete tasksObj[todolistId];
     setTasks({ ...tasksObj });
   };
+
   return (
     <div>
-      <AddItemForm addItem={() => {}} id={"blah"} />
-
+      <AddItemForm
+        addItem={(title: string) => {
+          alert(title);
+        }}
+      />
       <div>
         <div className="App">
           {todolists.map((tl) => {
