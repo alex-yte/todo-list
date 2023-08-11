@@ -21,7 +21,6 @@ export function AddItemForm(props: AddItemFormPropsType) {
     }
   };
   const addTask = () => {
-    debugger;
     if (newTaskTitle.trim() === "") {
       setError("Title is required");
       return;
